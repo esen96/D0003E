@@ -1,7 +1,8 @@
 #include <avr/io.h>
+#include "main.h"
 
-int main(void)
-{
+int main(void) {
+	
 	// Disable CPU clock prescaler functionality
 	CLKPR = 0x80;
 	CLKPR = 0x00;
