@@ -14,7 +14,7 @@ static const uint16_t sccTable[10] = {
 	0x0B51  // 9
 };
 
-/* Outputs a number from 0-9 on the LCD */
+/* Outputs a SCC character on the LCD */
 void writeChar(char ch, int pos) {
 	
 	if (pos<0||pos>5) {
