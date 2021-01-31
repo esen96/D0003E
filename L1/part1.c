@@ -36,7 +36,7 @@ void writeChar(char ch, int pos) {
 	   Digit 0 and 1 at LCDDR0, 2 and 3 at LCDDR1, 4 and 5 at LCDDR2*/
 	LCDAddress+=pos/2; 
 	
-	uint8_t nib=0x0; 
+	uint8_t nib=0; 
 	
 	/* Set nibble mask for even and uneven LCD digits */
 	uint8_t nibMask;
