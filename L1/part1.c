@@ -1,6 +1,6 @@
 #include <avr/io.h>
 
-// SCC character lookup table
+/* SCC character lookup table */
 static const uint16_t sccTable[10] = {
 	0x1551, // 0
 	0x0110, // 1
