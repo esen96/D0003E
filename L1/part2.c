@@ -9,7 +9,6 @@ void blink(void) {
 	// Set prescaling factor to 256
 	TCCR1B = (1 << CS12);
 	
-	// Next value variable
 	uint16_t nextValue=0;
 	
 	while(1) {

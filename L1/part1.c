@@ -21,10 +21,7 @@ void writeChar(char ch, int pos) {
 		return;
 	}
 		
-	// Variable for holding SCC table lookup result
 	uint16_t num;
-	
-	// Convert ch to int
 	int chInt = ch-'0';
 	if (chInt<0||chInt>9) {
 		return;
@@ -32,15 +29,14 @@ void writeChar(char ch, int pos) {
 		num = sccTable[chInt];
 	}
 	
-	// Nibble to be displayed on LCD
-	uint8_t nib=0x0; 
-	
 	// LCDAddress variable initialized at LCDDR0
 	uint8_t *LCDAddress=(uint8_t*)0xEC; 
 	
 	/* Modify LCDAddress to target the right pairwise address. 
 	   Digit 0 and 1 at LCDDR0, 2 and 3 at LCDDR1, 4 and 5 at LCDDR2*/
 	LCDAddress+=pos/2; 
+	
+	uint8_t nib=0x0; 
 	
 	/* Set nibble mask for even and uneven LCD digits */
 	uint8_t nibMask;
