@@ -1,25 +1,25 @@
 #include <avr/io.h>
 
+// SCC character lookup table
+uint16_t sccTable[10] = {
+	0x1551, // 0
+	0x0110, // 1
+	0x1e11, // 2 
+	0x1B11, // 3
+	0x0B50, // 4
+	0x1B41, // 5
+	0x1F41, // 6
+	0x0111, // 7
+	0x1F51, // 8
+	0x0B51  // 9
+};
+
 /* Outputs a number from 0-9 on the LCD */
 void writeChar(char ch, int pos) {
 	
 	if (pos<0||pos>5) {
 		return;
 	}
-	
-	// SCC character lookup table containing digits 0-9 
-	uint16_t sccCharacters[10] = {
-		0x1551, // 0
-		0x0110, // 1
-		0x1e11, // 2 
-		0x1B11, // 3
-		0x0B50, // 4
-		0x1B41, // 5
-		0x1F41, // 6
-		0x0111, // 7
-		0x1F51, // 8
-		0x0B51  // 9
-		};
 		
 	// Variable for holding SCC table lookup result
 	uint16_t num;
@@ -29,7 +29,7 @@ void writeChar(char ch, int pos) {
 	if (chInt<0||chInt>9) {
 		return;
 		} else {
-		num = sccCharacters[chInt];
+		num = sccTable[chInt];
 	}
 	
 	// Nibble to be displayed on LCD
