@@ -13,7 +13,7 @@ void runParts(long i) {
 	bool active = false;
 	
 	/* Part 3 settings and variables */
-	PORTB=0x80;
+	PORTB = (1<<PB7);
 	LCDDR13=0x1;
 	bool risingEdge = false;
 	
