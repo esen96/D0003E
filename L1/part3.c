@@ -5,7 +5,7 @@
 void button(void) {
 	
 	// Set bit 7 of port B to output
-	PORTB=0x80;
+	PORTB = (1<<PB7)
 	
 	// Initial LCD segment
 	LCDDR13=0x1;
