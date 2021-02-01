@@ -39,7 +39,7 @@ void writeChar(char ch, int pos) {
 	uint8_t nib=0; 
 	
 	/* Set nibble mask for even and uneven LCD digits */
-	uint8_t nibMask;
+	uint16_t nibMask;
 	if (pos%2 == 0) {
 		nibMask=0xFFF0;
 		} else {
