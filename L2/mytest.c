@@ -17,10 +17,10 @@ int pp;
 mutex m;
 void printAt(long num, int pos) {
 	lock(&m);
-    pp = pos;
-    writeChar( (num % 100) / 10 + '0', pp);
-    pp++;
-    writeChar( num % 10 + '0', pp);
+	pp = pos;
+	writeChar( (num % 100) / 10 + '0', pp);
+	pp++;
+	writeChar( num % 10 + '0', pp);
 	unlock(&m);
 }
 
@@ -36,6 +36,6 @@ void computePrimes(int pos) {
 
 int main() {
 	initLCD();
-    spawn(computePrimes, 0);
-    computePrimes(3);
+	spawn(computePrimes, 0);
+	computePrimes(3);
 }
