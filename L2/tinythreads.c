@@ -36,15 +36,15 @@ static void initialize(void) {
         threads[i].next = &threads[i+1];
     threads[NTHREADS-1].next = NULL;
 	
-	/* Lab-specific settings */
-	EIMSK = (1<<PCIE1);				/* Pin Change Interrupt Enable 1 */
-	PCMSK1 = (1<<PCINT15);				/* Set PCINT15 mask*/
-	PORTB = (1<<PB7);				/* Set bit 7 of port B to output */
-	TCCR1A = (1<<COM1A1) | (1<<COM1A0);		/* Set OC1A to high on compare match  */
-	TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	/* Set timer to CTC mode, set prescaler to 1024 */
-	OCR1A = FREQ*0.05;				/* Frequency * 50 ms */
-	TCNT1 = 0;					/* Clear TCNT1 register */
-	TIMSK1 = (1<<OCIE1A);				/* Enable timer output compare A */
+    /* Lab-specific settings */
+    EIMSK = (1<<PCIE1);					/* Pin Change Interrupt Enable 1 */
+    PCMSK1 = (1<<PCINT15);				/* Set PCINT15 mask*/
+    PORTB = (1<<PB7);					/* Set bit 7 of port B to output */
+    TCCR1A = (1<<COM1A1) | (1<<COM1A0);			/* Set OC1A to high on compare match  */
+    TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	/* Set timer to CTC mode, set prescaler to 1024 */
+    OCR1A = FREQ*0.05;					/* Frequency * 50 ms */
+    TCNT1 = 0;						/* Clear TCNT1 register */
+    TIMSK1 = (1<<OCIE1A);				/* Enable timer output compare A */
 
     initialized = 1;
 }
@@ -103,42 +103,40 @@ void spawn(void (* function)(int), int arg) {
 }
 
 void yield(void) {
-	DISABLE();
-	enqueue(current, &readyQ);
-	dispatch(dequeue(&readyQ));
-	ENABLE();
+    enqueue(current, &readyQ);
+    dispatch(dequeue(&readyQ));
 }
 
 void lock(mutex *m) {
-	DISABLE();
-	if(m->locked==0){
-		m->locked=1;
-	} else {
-		enqueue(current, &(m->waitQ));
-		dispatch(dequeue(&readyQ));
-	}
-	ENABLE();
+    DISABLE();
+    if(m->locked==0){
+        m->locked=1;
+    } else {
+	enqueue(current, &(m->waitQ));
+	dispatch(dequeue(&readyQ));
+    }
+    ENABLE();
 }
 
 void unlock(mutex *m) {
-	DISABLE();
-	if(m->waitQ){
-		enqueue(current, &readyQ);
-		dispatch(dequeue(&(m->waitQ)));
-	} else {
-		m->locked=0;
-	}
-	ENABLE();
+    DISABLE();
+    if(m->waitQ){
+	enqueue(current, &readyQ);
+	dispatch(dequeue(&(m->waitQ)));
+    } else {
+	m->locked=0;
+    }
+    ENABLE();
 }
 
 /* PCINT1_vect interrupt service routine */ 
 ISR(PCINT1_vect) {
-	if(PINB>>7==0){
-		yield();
-	}
+    if(PINB>>7==0){
+	yield();
+    }
 }
 
 /* TIMER1_COMPA_vect interrupt service routine */
 ISR(TIMER1_COMPA_vect) {
-	yield();
+    yield();
 }
