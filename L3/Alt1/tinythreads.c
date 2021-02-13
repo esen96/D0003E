@@ -39,15 +39,15 @@ static void initialize(void) {
 	}
     threads[NTHREADS-1].next = NULL;
 
-	/* Lab-specific settings */
-	EIMSK = (1<<PCIE1);									/* Pin Change Interrupt Enable 1 */
-	PCMSK1 = (1<<PCINT15);								/* Set PCINT15 mask*/
-	PORTB = (1<<PB7);									/* Set bit 7 of port B to output */
-	TCCR1A = (1<<COM1A1) | (1<<COM1A0);					/* Set OC1A to high on compare match  */
-	TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);		/* Set timer to CTC mode, set prescaler to 1024 */
-	OCR1A = FREQ*0.05;									/* Frequency * 50 ms */
-	TCNT1 = 0;											/* Clear TCNT1 register */
-	TIMSK1 = (1<<OCIE1A);								/* Enable timer output compare A */
+/* Lab-specific settings */
+    EIMSK = (1<<PCIE1);					/* Pin Change Interrupt Enable 1 */
+    PCMSK1 = (1<<PCINT15);				/* Set PCINT15 mask*/
+    PORTB = (1<<PB7);					/* Set bit 7 of port B to output */
+    TCCR1A = (1<<COM1A1) | (1<<COM1A0);			/* Set OC1A to high on compare match  */
+    TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	/* Set timer to CTC mode, set prescaler to 1024 */
+    OCR1A = FREQ*0.05;					/* Frequency * 50 ms */
+    TCNT1 = 0;						/* Clear TCNT1 register */
+    TIMSK1 = (1<<OCIE1A);				/* Enable timer output compare A */
 	
     initialized = 1;
 }
@@ -88,7 +88,7 @@ void spawn(void (* function)(int), int arg) {
     DISABLE();
     if (!initialized) initialize();
 
-	newp = dequeue(&freeQ);
+    newp = dequeue(&freeQ);
     newp->function = function;
     newp->arg = arg;
     newp->next = NULL;
@@ -102,7 +102,7 @@ void spawn(void (* function)(int), int arg) {
     SETSTACK(&newp->context, &newp->stack);
 
     enqueue(newp, &readyQ);
-	ENABLE();
+    ENABLE();
 }
 
 void yield(void) {
