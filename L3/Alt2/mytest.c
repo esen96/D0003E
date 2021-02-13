@@ -34,17 +34,17 @@ void computePrimes(int pos) {
 }
 
 void initTimer(void) {
-	TCCR1A = (1<<COM1A1) | (1<<COM1A0);				/* Set OC1A to high on compare match  */
+	TCCR1A = (1<<COM1A1) | (1<<COM1A0);		/* Set OC1A to high on compare match  */
 	TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	/* Set timer to CTC mode, set prescaler to 1024 */
-	OCR1A = FREQ/2;									/* Generate interrupts two times per second */
-	TCNT1 = 0;										/* Clear TCNT1 register */
-	TIMSK1 = (1<<OCIE1A);							/* Enable timer output compare A */
+	OCR1A = FREQ/2;					/* Generate interrupts two times per second */
+	TCNT1 = 0;					/* Clear TCNT1 register */
+	TIMSK1 = (1<<OCIE1A);				/* Enable timer output compare A */
 }
 
 void initButton(void) {
-	EIMSK = (1<<PCIE1);								/* Pin Change Interrupt Enable 1 */
-	PCMSK1 = (1<<PCINT15);							/* Set PCINT15 mask*/
-	PORTB = (1<<PB7);								/* Set bit 7 of port B to output */
+	EIMSK = (1<<PCIE1);				/* Pin Change Interrupt Enable 1 */
+	PCMSK1 = (1<<PCINT15);				/* Set PCINT15 mask*/
+	PORTB = (1<<PB7);				/* Set bit 7 of port B to output */
 }
 
 /* TIMER1_COMPA_vect interrupt service routine */
