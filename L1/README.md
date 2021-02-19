@@ -1,3 +1,7 @@
+## Real-Time Systems – Lab 1
+
+----------
+
 ## C programming on bare metal
 
 The purpose of this assignment is to exercise C programming immediately on the bare metal computer hardware, and to concretely illustrate some of the fundamental limitations of ordinary sequential programming. The tasks to be solved might therefore appear a bit artificial, but they have been chosen more because of their clarity than because of their realism.
@@ -57,4 +61,4 @@ Try out your program for different start values for the prime number computation
 
 What can you say about the structure of your combined program? Was some clarity of your individual solutions lost in the adaption process? Why wasn't it possible to simply call the original functions one after another in the main program?
 
-_Examination: we will ask you to run the program calculating prime numbers that are larger than 25000. You will then have to answer the questions above._
+_Examination: we will ask you to run the program calculating prime numbers that are larger than 25000. You will then have to answer the questions above.
