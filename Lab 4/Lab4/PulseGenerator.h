@@ -18,7 +18,6 @@ void decrement(PulseGenerator *self, int arg);
 void reset(PulseGenerator *self, int arg);
 void restore(PulseGenerator *self, int arg);
 void output(PulseGenerator *self, int arg);
-void shutDown(PulseGenerator *self, int arg);
 
 #define initPulseGenerator(lcdPos, pbit, pw) { initObject(), 0, 0, lcdPos, pbit, pw }
 
