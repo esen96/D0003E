@@ -72,3 +72,14 @@ void printAt(long num, int pos) {
 	pp++;
 	writeChar( num % 10 + '0', pp);
 }
+
+/* Switches LCD indicator */
+void switchIndicator(int pulseGenerator) {
+	if (pulseGenerator == 1) {
+		LCDDR3=0x1;
+		LCDDR13=0x0;
+	} else if (pulseGenerator == 2) {
+		LCDDR3=0x0;
+		LCDDR13=0x1;
+	}
+} 

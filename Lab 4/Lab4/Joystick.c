@@ -21,12 +21,10 @@
 void switchGenerator(Joystick *self, int arg) {
 	if (!(PINE>>LEFT & 1)) {
 		self->currentGenerator = self->pulseGenerator2;
-		LCDDR3=0x0;
-		LCDDR13=0x1;
+		switchIndicator(2);
 	} else if (!(PINE>>RIGHT & 1)) {
 		self->currentGenerator = self->pulseGenerator1;
-		LCDDR3=0x1;
-		LCDDR13=0x0;
+		switchIndicator(1);
 	}
 }
 
