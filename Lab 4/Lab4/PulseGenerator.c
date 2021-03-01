@@ -2,8 +2,6 @@
 #include "PulseGenerator.h"
 #include "TinyTimber.h"
 
-#define PORTBIT4 0x10
-#define PORTBIT6 0x40
 #define HALFSEC 500
 
 /* Increments the frequency of the pulse generator */
