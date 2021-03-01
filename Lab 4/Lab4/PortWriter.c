@@ -5,7 +5,7 @@
 #define PORTBIT4 0x10
 #define PORTBIT6 0x40
 
-/* Toggles a ports output bit */
+/* Toggles a port output bit */
 void write(PortWriter *self, int arg) {
 	if (arg == 4) {
 		PORTE=PORTE^PORTBIT4;
@@ -14,7 +14,7 @@ void write(PortWriter *self, int arg) {
 	}
 }
 
-/* Sets a ports output bit to 0 */
+/* Sets a port output bit to 0 */
 void deactivate(PortWriter *self, int arg) {
 	if (arg == 4) {
 		PORTE = PORTE & ~(PORTBIT4);
