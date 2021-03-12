@@ -67,7 +67,7 @@ void dispatch(Controller *self, int arg) {
 	}
 }
 
-/* Lets a stream of cars pass from alternate sides */
+/* Lets a stream of cars pass from alternating sides */
 void alternateCarStreams(Controller *self, int arg) {
 	if (self->alternate == true) {
 		if (self->carsPassed < MAXSTREAMSIZE && self->northQueue > 0) {
