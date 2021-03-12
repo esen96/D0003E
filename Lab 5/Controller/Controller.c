@@ -70,7 +70,7 @@ void dispatch(Controller *self, int arg) {
 /* Lets a stream of cars pass from alternating sides */
 void alternateCarStreams(Controller *self, int arg) {
 	if (self->alternate == true) {
-		if (self->carsPassed < MAXSTREAMSIZE && self->northQueue > 0) {
+		if (self->carsPassed < MAXSTREAMSIZE) {
 			ASYNC(self, transmit, NORTHGREENSIGNAL);
 			self->carsPassed++;
 			AFTER(SEC(CARSTREAMRATE), self, dispatch, 0);
@@ -82,7 +82,7 @@ void alternateCarStreams(Controller *self, int arg) {
 		}
 	}
 	else {
-		if (self->carsPassed < MAXSTREAMSIZE && self->southQueue > 0) {
+		if (self->carsPassed < MAXSTREAMSIZE) {
 			ASYNC(self, transmit, SOUTHGREENSIGNAL);
 			self->carsPassed++;
 			AFTER(SEC(CARSTREAMRATE), self, dispatch, 0);
