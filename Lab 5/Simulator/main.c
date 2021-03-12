@@ -72,7 +72,7 @@ void updateTrafficData(void) {
 	printf("Cars on bridge: %d \n", carsOnBridge);
 	printf("########################################## \n");
 
-	pthread_mutex_lock(&trafficDataMutex);
+	pthread_mutex_unlock(&trafficDataMutex);
 }
 
 /* Blocked wait function to be run on main thread */
